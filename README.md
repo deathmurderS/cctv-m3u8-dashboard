@@ -613,7 +613,7 @@ MIT License - See LICENSE file for details
 
 For issues and questions:
 - GitHub Issues: [Create an issue](https://github.com/YOUR_USERNAME/cctv-m3u8-dashboard/issues)
-- Email: your-email@example.com
+- Email: zakychen558@gmail.com
 
 ---
 
