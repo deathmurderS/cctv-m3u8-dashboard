@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cctv-backend
+  namespace: cctv-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cctv-backend
+  template:
+    metadata:
+      labels:
+        app: cctv-backend
+    spec:
+      containers:
+      - name: backend
+        image: your-registry/cctv-backend:latest
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: streams-config
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cctv-frontend
+  namespace: cctv-system
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cctv-frontend
+  template:
+    metadata:
+      labels:
+        app: cctv-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: your-registry/cctv-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
